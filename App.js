@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Text,
@@ -13,20 +14,38 @@ import {
 import getImageForWeather from './utils/getImageForWeather';
 
 import SearchInput from './components/SearchInput';
+import { handleSubmitEditing } from './utils/functions'
+
+SearchInput.propTypes = {
+  setCity: PropTypes.func.isRequired,
+  setForecast: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired,
+  setError: PropTypes.func.isRequired,
+  placeholder: PropTypes.string
+}
+
+SearchInput.defaultProps = {
+  placeholder: ''
+}
 
 const App = () => {
 
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("Raposos");
   const [forecast, setForecast] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
 
   React.useEffect(() => {
-    setError(false);
-    setLoading(false)
+    handleSubmitEditing({
+      textInput: city,
+      setCity,
+      setForecast,
+      setLoading,
+      setError
+    })
   }, [])
-  
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <StatusBar barStyle="light-content" />
@@ -37,6 +56,7 @@ const App = () => {
       >
         <View style={styles.detailsContainer}>
           <ActivityIndicator animating={loading} color="white" size="large" />
+
           {!loading && (
             <View>
               {error && (
@@ -57,15 +77,16 @@ const App = () => {
                   </Text>
                 </View>
               )}
+              <SearchInput
+                placeholder="Procurar Cidade"
+                setCity={setCity}
+                setForecast={setForecast}
+                setLoading={setLoading}
+                setError={setError}
+              />
             </View>
           )}
-          <SearchInput
-            placeholder="Procurar Cidade"
-            setCity={setCity}
-            setForecast={setForecast}
-            setLoading={setLoading}
-            setError={setError}
-          />
+
         </View>
       </ImageBackground>
     </KeyboardAvoidingView>
@@ -77,39 +98,32 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#34495E',
   },
-  textStyle: {
-    textAlign: 'center',
-    color: 'white',
-    ...Platform.select({
-      ios: {
-        fontFamily: 'AvenirNext-Regular',
-      },
-      android: {
-        fontFamily: 'Roboto',
-      }
-    })
-  },
-  largeText: {
-    fontSize: 44
-  },
-  smallText: {
-    fontSize: 18
-  },
   imageContainer: {
-    flex: 1
+    flex: 1,
   },
   image: {
     flex: 1,
     width: null,
     height: null,
-    resizeMode: 'cover'
+    resizeMode: 'cover',
   },
   detailsContainer: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0.2)',
     paddingHorizontal: 20,
-  }
+  },
+  textStyle: {
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'AvenirNext-Regular' : 'Roboto',
+    color: 'white',
+  },
+  largeText: {
+    fontSize: 44,
+  },
+  smallText: {
+    fontSize: 18,
+  },
 });
 
 export default App;
