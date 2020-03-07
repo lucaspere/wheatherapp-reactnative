@@ -6,6 +6,7 @@ import {
   Platform,
   KeyboardAvoidingView,
 } from 'react-native';
+
 import SearchInput from './components/SearchInput';
 
 const App = () => {
