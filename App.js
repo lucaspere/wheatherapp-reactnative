@@ -27,7 +27,11 @@ const App = () => {
         <View style={styles.detailsContainer}>
           <Text style={[styles.largeText, styles.textStyle]}>{city}</Text>
           <Text style={[styles.smallText, styles.textStyle]}>{forecast.summary}</Text>
-          <Text style={[styles.largeText, styles.textStyle]}>{forecast && <Text>{`${forecast.temperature}°C`}</Text>}</Text>
+          <Text style={[styles.largeText, styles.textStyle]}>
+            {!forecast.temperature ? <Text>Consulte o clima em tempo real</Text>
+              : <Text>{`${forecast.temperature}°C`}</Text>
+            }
+          </Text>
           <SearchInput
             placeholder="Procurar Cidade"
             setCity={setCity}
