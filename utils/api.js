@@ -8,7 +8,7 @@ export const fetchLocationId = async (city, callback) => {
       if (data.features.length === 0) {
          return callback("Cidade não encontrada. Tente outra cidade", undefined);
       }
-      console.log(data.features[0].place_name)
+
       callback(undefined, {
          longitude: data.features[0].center[0],
          latitude: data.features[0].center[1],

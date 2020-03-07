@@ -1,29 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
-import * as api from '../utils/api';
+import { StyleSheet, View, TextInput } from 'react-native';
+
+import { handleSubmitEditing } from '../utils/functions';
 
 const SearchInput = (props) => {
 
    const [textInput, setTextInput] = useState("");
 
-   const handleSubmitEditing = () => {
-      const formattedTextInput = textInput.toLowerCase();
-      api.fetchLocationId(formattedTextInput, (err, data) => {
-         if (err) {
-            throw new Error("Aff: " + err)
-         } else {
-            props.setCity(data.location);
-            api.fetchWeather(data.longitude, data.latitude, (err, { summary, temperature }) => {
-               if (err) {
-                  throw new Error("Deu ruim: " + err);
-               } else {
-                  props.setForecast({ temperature, summary })
-               }
-            })
-         }
-      })
-   };
-
+   const { setForecast, setCity } = props;
    return (
       <View style={styles.container}>
          <TextInput
@@ -35,7 +19,12 @@ const SearchInput = (props) => {
             underlineColorAndroid="transparent"
             value={textInput}
             onChangeText={text => setTextInput(text)}
-            onSubmitEditing={handleSubmitEditing}
+            onSubmitEditing={() => handleSubmitEditing({
+               textInput,
+               setForecast,
+               setCity
+
+            })}
          />
       </View>
    )

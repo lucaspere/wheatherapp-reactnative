@@ -6,6 +6,8 @@ import {
   View,
   Platform,
   KeyboardAvoidingView,
+  ActivityIndicator,
+  StatusBar
 } from 'react-native';
 
 import getImageForWeather from './utils/getImageForWeather';
