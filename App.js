@@ -1,21 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
+  ImageBackground,
   View,
   Platform,
   KeyboardAvoidingView,
 } from 'react-native';
 
+import getImageForWeather from './utils/getImageForWeather';
+
 import SearchInput from './components/SearchInput';
 
 const App = () => {
+
+  const [city, setCity] = useState("");
+  const [forecast, setForecast] = useState({});
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <Text style={[styles.largeText, styles.textStyle]}>San Francisco</Text>
-      <Text style={[styles.smallText, styles.textStyle]}>Light Cloud</Text>
-      <Text style={[styles.largeText, styles.textStyle]}>24°</Text>
-      <SearchInput placeholder="Procurar Cidade"/>
+      <ImageBackground
+        source={getImageForWeather('Clear')}
+        style={styles.imageContainer}
+        imageStyle={styles.image}
+      >
+        <View style={styles.detailsContainer}>
+          <Text style={[styles.largeText, styles.textStyle]}>{city}</Text>
+          <Text style={[styles.smallText, styles.textStyle]}>{forecast.summary}</Text>
+          <Text style={[styles.largeText, styles.textStyle]}>{forecast && <Text>{`${forecast.temperature}°C`}</Text>}</Text>
+          <SearchInput
+            placeholder="Procurar Cidade"
+            setCity={setCity}
+            setForecast={setForecast}
+          />
+        </View>
+      </ImageBackground>
     </KeyboardAvoidingView>
   );
 }
@@ -23,12 +42,11 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#34495E',
   },
   textStyle: {
     textAlign: 'center',
+    color: 'white',
     ...Platform.select({
       ios: {
         fontFamily: 'AvenirNext-Regular',
@@ -44,6 +62,21 @@ const styles = StyleSheet.create({
   smallText: {
     fontSize: 18
   },
+  imageContainer: {
+    flex: 1
+  },
+  image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover'
+  },
+  detailsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    paddingHorizontal: 20,
+  }
 });
 
 export default App;
