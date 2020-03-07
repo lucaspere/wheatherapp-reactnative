@@ -7,7 +7,7 @@ const SearchInput = (props) => {
 
    const [textInput, setTextInput] = useState("");
 
-   const { setForecast, setCity } = props;
+   const { setForecast, setCity, setLoading, setError } = props;
    return (
       <View style={styles.container}>
          <TextInput
@@ -22,8 +22,9 @@ const SearchInput = (props) => {
             onSubmitEditing={() => handleSubmitEditing({
                textInput,
                setForecast,
-               setCity
-
+               setCity,
+               setLoading,
+               setError
             })}
          />
       </View>

@@ -18,26 +18,53 @@ const App = () => {
 
   const [city, setCity] = useState("");
   const [forecast, setForecast] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
+
+  React.useEffect(() => {
+    setError(false);
+    setLoading(false)
+  }, [])
+  
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <StatusBar barStyle="light-content" />
       <ImageBackground
-        source={getImageForWeather('Clear')}
+        source={getImageForWeather(forecast.icon)}
         style={styles.imageContainer}
         imageStyle={styles.image}
       >
         <View style={styles.detailsContainer}>
-          <Text style={[styles.largeText, styles.textStyle]}>{city}</Text>
-          <Text style={[styles.smallText, styles.textStyle]}>{forecast.summary}</Text>
-          <Text style={[styles.largeText, styles.textStyle]}>
-            {!forecast.temperature ? <Text>Consulte o clima em tempo real</Text>
-              : <Text>{`${forecast.temperature}°C`}</Text>
-            }
-          </Text>
+          <ActivityIndicator animating={loading} color="white" size="large" />
+          {!loading && (
+            <View>
+              {error && (
+                <Text style={[styles.smallText, styles.textStyle]}>
+                  Não conseguimos buscar o clima. Por favor, tente outra cidade.
+                </Text>
+              )}
+              {!error && (
+                <View>
+                  <Text style={[styles.largeText, styles.textStyle]}>
+                    {city}
+                  </Text>
+                  <Text style={[styles.smallText, styles.textStyle]}>
+                    {forecast.summary}
+                  </Text>
+                  <Text style={[styles.largeText, styles.textStyle]}>
+                    {`${Number(Math.round(forecast.temperature))}°C`}
+                  </Text>
+                </View>
+              )}
+            </View>
+          )}
           <SearchInput
             placeholder="Procurar Cidade"
             setCity={setCity}
             setForecast={setForecast}
+            setLoading={setLoading}
+            setError={setError}
           />
         </View>
       </ImageBackground>

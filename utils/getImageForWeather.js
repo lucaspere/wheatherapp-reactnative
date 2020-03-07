@@ -1,15 +1,13 @@
 const getImageForWeather = (wheather) => {
    const images = {
-      Clear: require('../assets/clear-day.png'),
-      Hail: require('../assets/hail.png'),
-      'Heavy Cloud': require('../assets/heavy-cloud.png'),
-      'Light Cloud': require('../assets/light-cloud.png'),
-      'Heavy Rain': require('../assets/heavy-rain.png'),
-      'Light Rain': require('../assets/light-rain.png'),
-      Showers: require('../assets/showers.png'),
-      Sleet: require('../assets/sleet.png'),
-      Snow: require('../assets/snow.png'),
-      Thunder: require('../assets/thunder.png'),
+      'clear-day': require('../assets/clear-day.png'),
+      hail: require('../assets/hail.png'),
+      cloudy: require('../assets/heavy-cloud.png'),
+      'partly-cloudy-day': require('../assets/light-cloud.png'),
+      rain: require('../assets/heavy-rain.png'),
+      sleet: require('../assets/sleet.png'),
+      snow: require('../assets/snow.png'),
+      thunderstorm: require('../assets/thunder.png'),
    };
 
    return images[wheather]
