@@ -25,7 +25,7 @@ export const fetchLocationId = async (city, callback) => {
 
 export const fetchWeather = async (longitude, latitude, callback) => {
    
-   const url = `https://api.darksky.net/forecast/1602e381a94491ded4f1838cbf2e6dc6/${latitude},${longitude}?exclude=flags&units=si`;
+   const url = `https://api.darksky.net/forecast/1602e381a94491ded4f1838cbf2e6dc6/${latitude},${longitude}?exclude=flags&units=si&lang=pt`;
 
    try {
 
