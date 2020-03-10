@@ -4,7 +4,7 @@ Aplicativo mobile feito em React Native
 
 ## Como iniciar
 
-[Teste aqui](https://appetize.io/embed/xc1w6f1krd589zhp22a0mgftyw?autoplay=false&debug=true&device=nexus5&deviceColor=black&embed=true&launchUrl=exp:%2F%2Fexpo.io%2F@lucaspere%2F1a4207%2BWQmdYSVAK&orientation=portrait&pc=ag_yhedh8hgn67vxke04by2ngnvpg&screenOnly=false&xDocMsg=true&xdocMsg=true&params=%7B%22EXKernelLaunchUrlDefaultsKey%22:%22exp:%2F%2Fexpo.io%2F@lucaspere%2F1a4207%2BWQmdYSVAK%22,%22EXKernelDisableNuxDefaultsKey%22:true%7D&scale=75&osVersion=8.1)
+[Teste aqui](https://appetize.io/embed/xc1w6f1krd589zhp22a0mgftyw?autoplay=false&debug=true&device=nexus5&deviceColor=black&embed=true&launchUrl=exp:%2F%2Fexpo.io%2F@lucaspere%2Fclima-app%2BzNnEu2XgK&orientation=portrait&pc=ag_yhedh8hgn67vxke04by2ngnvpg&screenOnly=false&xDocMsg=true&xdocMsg=true&params=%7B%22EXKernelLaunchUrlDefaultsKey%22:%22exp:%2F%2Fexpo.io%2F@lucaspere%2Fclima-app%2BzNnEu2XgK%22,%22EXKernelDisableNuxDefaultsKey%22:true%7D&scale=75&osVersion=8.1)
 
 1. Clone este repositório:
 
