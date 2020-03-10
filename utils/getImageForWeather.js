@@ -1,5 +1,6 @@
 const getImageForWeather = (wheather) => {
    const images = {
+      'clear-night': require('../assets/clear-day.jpg'),
       'clear-day': require('../assets/clear-day.png'),
       hail: require('../assets/hail.png'),
       cloudy: require('../assets/heavy-cloud.png'),
